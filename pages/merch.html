@@ -22,99 +22,40 @@
 </head>
 
 <body class="font-['Poppins'] bg-[#010101]">
-  <!-- Navbar container -->
-  <div id="navbar-container"></div>
+  <!-- Navbar Start -->
+  <nav class="navbar bg-[#010101] flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4 fixed top-0 left-0 right-0 z-50 shadow-md">
+    <div class="w-full md:w-auto flex justify-between items-center">
+      <a href="../index.html" class="navbar-logo text-white text-xl md:text-2xl font-bold italic">INDICA<span class="text-[#5d5d5d]">KOPI</span></a>
+      
+      <div class="navbar-extra flex gap-4 md:hidden">
+        <a href="#" id="search-mobile" class="text-white hover:text-[#5d5d5d] transition duration-300"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-mobile" class="text-white hover:text-[#5d5d5d] transition duration-300"><i data-feather="shopping-cart"></i></a>
+        <button id="hamburger-menu" class="text-white hover:text-[#5d5d5d] transition duration-300" aria-label="Menu"><i data-feather="menu"></i></button>
+      </div>
+    </div>
 
-  <!-- Scripts -->
-  <script src="../js/components.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Load navbar component
-      ComponentLoader.loadComponent('navbar-container', '../components/navbar.html');
-    });
-  </script>  <!-- Merchandise section start -->
+    <div class="navbar-nav hidden md:flex w-full md:w-auto flex-col md:flex-row items-center gap-4 md:gap-8 pb-4 md:pb-0 bg-[#010101]">
+      <a href="../index.html#home" class="text-white hover:text-[#5d5d5d] transition duration-300 py-2 md:py-0 w-full md:w-auto text-center">Home</a>
+      <a href="../index.html#about" class="text-white hover:text-[#5d5d5d] transition duration-300 py-2 md:py-0 w-full md:w-auto text-center">Tentang kami</a>
+      <a href="menu.html" class="text-white hover:text-[#5d5d5d] transition duration-300 py-2 md:py-0 w-full md:w-auto text-center">Menu</a>
+      <a href="merch.html" class="text-white hover:text-[#5d5d5d] transition duration-300 py-2 md:py-0 w-full md:w-auto text-center">Merch</a>
+      <a href="../index.html#contact" class="text-white hover:text-[#5d5d5d] transition duration-300 py-2 md:py-0 w-full md:w-auto text-center">Kontak</a>
+    </div>
+
+    <div class="navbar-extra hidden md:flex gap-4">
+      <a href="#" id="search" class="text-white hover:text-[#5d5d5d] transition duration-300"><i data-feather="search"></i></a>
+      <a href="#" id="shopping-cart" class="text-white hover:text-[#5d5d5d] transition duration-300"><i data-feather="shopping-cart"></i></a>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Merchandise section start -->
   <section class="merch py-24 px-6">
     <h2 class="text-center text-3xl md:text-4xl font-bold mb-4 text-white mt-8 reveal"><span class="text-[#5d5d5d]">Merchandise</span> kami</h2>
     <p class="text-center text-gray-300 mb-12 reveal">Koleksi merchandise eksklusif dari INDICAKOPI</p>
 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Merchandise Card 1 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="T-Shirt INDICAKOPI" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">T-Shirt INDICAKOPI</h3>
-          <p class="text-gray-400 mb-4">T-Shirt eksklusif dengan desain minimalis logo INDICAKOPI. 100% katun premium.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 150K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Merchandise Card 2 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="Tumbler INDICAKOPI" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">Tumbler INDICAKOPI</h3>
-          <p class="text-gray-400 mb-4">Tumbler stainless steel berkualitas tinggi dengan desain eksklusif. Kapasitas 500ml.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 200K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Merchandise Card 3 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="Coffee Bean Pack" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">Coffee Bean Pack</h3>
-          <p class="text-gray-400 mb-4">Biji kopi pilihan INDICAKOPI, fresh roasted. Kemasan 250gr dengan valve degassing.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 125K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Merchandise Card 4 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="Coffee Dripper Set" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">Coffee Dripper Set</h3>
-          <p class="text-gray-400 mb-4">Set lengkap untuk manual brewing, termasuk dripper, filter, dan gelas ukur.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 350K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Merchandise Card 5 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="Coffee Scale" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">Coffee Scale</h3>
-          <p class="text-gray-400 mb-4">Timbangan digital presisi tinggi untuk brewing kopi. Akurasi 0.1g dengan timer.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 450K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Merchandise Card 6 -->
-      <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
-        <img src="https://via.placeholder.com/400x300" alt="Coffee Gift Set" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h3 class="text-white text-xl font-semibold mb-2">Coffee Gift Set</h3>
-          <p class="text-gray-400 mb-4">Paket hadiah eksklusif berisi biji kopi, tumbler, dan merchandise INDICAKOPI.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5d5d5d] text-xl font-bold">IDR 500K</span>
-            <a href="#" class="bg-[#5d5d5d] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#9a7349] transition duration-300">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
+    <div id="merchandise-container" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards will be dynamically loaded here -->
     </div>
   </section>
   <!-- Merchandise section end -->
@@ -144,8 +85,19 @@
     feather.replace();
   </script>
 
+  <!-- Merchandise data -->
+  <script src="../js/merch-data.js"></script>
+
   <!-- Component loader -->
   <script src="../js/components.js"></script>
+
+  <!-- Load merchandise cards and initialize mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMerchandiseCards('merchandise-container');
+      ComponentLoader.initMobileMenu();
+    });
+  </script>
 
   <!-- ini javascriptnya -->
   <script src="../js/script.js"></script>
