@@ -1,7 +1,4 @@
-// Initialize Feather Icons
-if (window.feather) {
-    feather.replace();
-}
+// Note: merchandiseItems is loaded from merch-data.js
 
 // Get random items from array
 function getRandomItems(array, count) {
@@ -11,8 +8,8 @@ function getRandomItems(array, count) {
 
 // Generate merchandise card HTML
 function generateMerchCard(item) {
-    // Fix image path for home page (remove ../ if present since index.html is at root)
-    const imagePath = item.image.replace('../', '');
+    // Fix image path for root page (remove ../ prefix if present)
+    const imagePath = item.image.startsWith('../') ? item.image.substring(3) : item.image;
     
     return `
     <div class="bg-[#1a1a1a] rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
