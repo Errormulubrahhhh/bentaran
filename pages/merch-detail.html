@@ -143,11 +143,46 @@
 
     function renderProductDetail(product) {
       const container = document.getElementById('product-detail');
+      const productImages = product.images || [product.image, product.image, product.image];
       
       container.innerHTML = `
-        <!-- Product Image -->
+        <!-- Product Image Carousel -->
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-2xl">
+          <div class="relative">
+            <!-- Main Image Display -->
+            <div class="carousel-container relative overflow-hidden rounded-lg shadow-2xl aspect-square">
+              <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full" id="carousel-track">
+                ${productImages.map((img, index) => `
+                  <img src="${img}" alt="${product.name} - Image ${index + 1}" class="w-full h-full flex-shrink-0 object-contain bg-[#1a1a1a]" data-index="${index}">
+                `).join('')}
+              </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button id="prev-btn" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition duration-300 z-10">
+              <i data-feather="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="next-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition duration-300 z-10">
+              <i data-feather="chevron-right" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Indicators -->
+            <div class="flex justify-center gap-2 mt-4">
+              ${productImages.map((_, index) => `
+                <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-[#5d5d5d] w-8' : 'bg-gray-500'}" data-index="${index}"></button>
+              `).join('')}
+            </div>
+          </div>
+          
+          <!-- Thumbnail Gallery -->
+          <div class="grid grid-cols-3 gap-3 mt-4">
+            ${productImages.map((img, index) => `
+              <button class="thumbnail-btn border-2 ${index === 0 ? 'border-[#5d5d5d]' : 'border-transparent'} rounded-lg overflow-hidden hover:border-[#5d5d5d] transition duration-300" data-index="${index}">
+                <img src="${img}" alt="Thumbnail ${index + 1}" class="w-full h-24 object-cover">
+              </button>
+            `).join('')}
+          </div>
+          
           ${product.colors ? `
             <div class="mt-6">
               <p class="text-gray-400 mb-2">Tersedia dalam warna:</p>
@@ -236,7 +271,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               <div>
                 <i data-feather="truck" class="text-[#5d5d5d] mx-auto mb-2"></i>
-                <p class="text-gray-400 text-sm">Pengiriman Jabodetabek</p>
+                <p class="text-gray-400 text-sm">Pengiriman ke seluruh Indonesia</p>
               </div>
               <div>
                 <i data-feather="shield" class="text-[#5d5d5d] mx-auto mb-2"></i>
@@ -250,6 +285,87 @@
           </div>
         </div>
       `;
+      
+      // Initialize carousel functionality
+      initCarousel();
+    }
+    
+    function initCarousel() {
+      const track = document.getElementById('carousel-track');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const indicators = document.querySelectorAll('.carousel-indicator');
+      const thumbnails = document.querySelectorAll('.thumbnail-btn');
+      const images = track.querySelectorAll('img');
+      let currentIndex = 0;
+      
+      function updateCarousel(index) {
+        currentIndex = index;
+        const offset = -index * 100;
+        track.style.transform = `translateX(${offset}%)`;
+        
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+          if (i === index) {
+            indicator.classList.add('bg-[#5d5d5d]', 'w-8');
+            indicator.classList.remove('bg-gray-500');
+          } else {
+            indicator.classList.remove('bg-[#5d5d5d]', 'w-8');
+            indicator.classList.add('bg-gray-500');
+          }
+        });
+        
+        // Update thumbnails
+        thumbnails.forEach((thumb, i) => {
+          if (i === index) {
+            thumb.classList.add('border-[#5d5d5d]');
+            thumb.classList.remove('border-transparent');
+          } else {
+            thumb.classList.remove('border-[#5d5d5d]');
+            thumb.classList.add('border-transparent');
+          }
+        });
+      }
+      
+      // Previous button
+      prevBtn.addEventListener('click', () => {
+        const newIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
+        updateCarousel(newIndex);
+      });
+      
+      // Next button
+      nextBtn.addEventListener('click', () => {
+        const newIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+        updateCarousel(newIndex);
+      });
+      
+      // Indicators
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          updateCarousel(index);
+        });
+      });
+      
+      // Thumbnails
+      thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+          updateCarousel(index);
+        });
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+          nextBtn.click();
+        }
+      });
+      
+      // Auto-play (optional - commented out)
+      // setInterval(() => {
+      //   nextBtn.click();
+      // }, 5000);
     }
 
     function renderRelatedProducts(currentId, category) {
